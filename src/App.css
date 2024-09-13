@@ -1,0 +1,26 @@
+.Square {
+    background: lightblue;
+    border: 2px solid darkblue;
+    font-size: 1.75rem;
+    font-weight: 800;
+    cursor: pointer;
+    outline: none;
+}
+
+.Grid_Style {
+    border: 4px solid darkblue;
+    border-radius: 0.5em;
+    width: 250px;
+    height: 250px;
+    margin: 2em auto;
+    display: grid;
+    /* makes a 3/3 grid */
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+
+}
+
+.Status_Style {
+    margin: 1em auto;
+    text-align: center;
+    font-weight: 700;
+}
