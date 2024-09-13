@@ -4,29 +4,32 @@ import calculateWinner from "../helpers"
 import "../src/App.css"
 import { nanoid } from 'nanoid'
 
-export default function GameBoard() {
+export default function GameBoard({ squares, setHistory, onPlay, playerXTurn }) {
 
-    const [squares, setSquares] = React.useState(Array(9).fill(null))
-    const [playerXTurn, setPlayerXTurn] = React.useState(true)
+    // const [squares, setSquares] = React.useState(Array(9).fill(null))
+    // const [playerXTurn, setPlayerXTurn] = React.useState(true)
     const winner = calculateWinner(squares)
 
     function handleClick(i) {
 
-        const nextSquares = squares.slice()
+        // const nextSquares = squares.slice()
+        const nextSquares = [...squares]
         //early return if square is filled aka not null or a winner exists
         if (nextSquares[i] || calculateWinner(squares)) {
             return
         }
-        if (playerXTurn) {
-            nextSquares[i] = "X"
+        nextSquares[i] = playerXTurn ? "X" : "O"
+        // if (playerXTurn) {
+        //     nextSquares[i] = "X"
 
-        } else {
-            nextSquares[i] = "O"
-        }
+        // } else {
+        //     nextSquares[i] = "O"
+        // }
 
         /// no need to set on both if / else above
-        setSquares(nextSquares)
-        setPlayerXTurn(!playerXTurn)
+        // setSquares(nextSquares)
+        // setPlayerXTurn(!playerXTurn)
+        onPlay(nextSquares)
     }
 
 
@@ -44,7 +47,7 @@ export default function GameBoard() {
     })
 
     function playAgain() {
-        setSquares(Array(9).fill(null))
+        setHistory([Array(9).fill(null)])
         setPlayerXTurn(true)
     }
 
